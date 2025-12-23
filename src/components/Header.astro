@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/icons/xl-logo.svg';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#FFF9ED] rounded-b-lg shadow-sm font-sans">
+	<nav class=" mx-full px-4 md:px-6 lg:px-16 py-6 flex items-center justify-between min-h-[80px]">
+		<!-- Logo -->
+		<a href="/" class="">
+			<Image 
+				src={logo} 
+				alt="XL Powder Coating" 
+				width={78} 
+				height={33}
+				class="h-9 w-auto ml-10"
+			/>
+		</a>
+
+		<!-- Navigation Links - Desktop (Centered) -->
+		<ul class="hidden md:flex items-center gap-10 absolute left-1/2 transform -translate-x-1/2">
+			<li>
+				<a href="#about" class="text-gray-800 hover:text-gray-600 transition-all duration-300 font-medium py-2 relative group">
+					About us
+					<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#DC2626] transition-all duration-300 group-hover:w-full"></span>
+				</a>
+			</li>
+			<li>
+				<a href="#services" class="text-gray-800 hover:text-gray-600 transition-all duration-300 font-medium py-2 relative group">
+					Services
+					<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#DC2626] transition-all duration-300 group-hover:w-full"></span>
+				</a>
+			</li>
+			<li>
+				<a href="#gallery" class="text-gray-800 hover:text-gray-600 transition-all duration-300 font-medium py-2 relative group">
+					Gallery
+					<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#DC2626] transition-all duration-300 group-hover:w-full"></span>
+				</a>
+			</li>
+			<li>
+				<a href="#process" class="text-gray-800 hover:text-gray-600 transition-all duration-300 font-medium py-2 relative group">
+					Process
+					<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#DC2626] transition-all duration-300 group-hover:w-full"></span>
+				</a>
+			</li>
+		</ul>
+
+		<!-- Contact Button -->
+		<a 
+			href="#contact" 
+			class="bg-[#DC2626] hover:bg-[#B91C1C] text-white px-10 py-3.5 rounded-lg font-medium transition-colors shadow-md"
+		>
+			Contact Us
+		</a>
+	</nav>
+</header>
+

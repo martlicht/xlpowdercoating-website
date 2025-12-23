@@ -1,0 +1,180 @@
+/* Eastman Roman - Font Face Declarations */
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-Thin-BF674c45a01cc8c.otf') format('opentype');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-ThinItalic-BF674c45a01c66f.otf') format('opentype');
+	font-weight: 100;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-Extralight-BF674c459f554ac.otf') format('opentype');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-ExtralightItalic-BF674c45a0180b9.otf') format('opentype');
+	font-weight: 200;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-Light-BF674c45a0176f5.otf') format('opentype');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-LightItalic-BF674c45a020dbc.otf') format('opentype');
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-Regular-BF674c45a018416.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-Italic-BF674c45a020d37.otf') format('opentype');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-RegularOffset-BF674c45a0211b6.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	font-feature-settings: 'liga' off;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-RegularOffsetItalic-BF674c45a0186c8.otf') format('opentype');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+	font-feature-settings: 'liga' off;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-Medium-BF674c45a019c55.otf') format('opentype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-MediumItalic-BF674c45a01f713.otf') format('opentype');
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-DemiBold-BF674c45a023b51.otf') format('opentype');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-DemiBoldItalic-BF674c45a01e8fc.otf') format('opentype');
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-Bold-BF674c45a0261e7.otf') format('opentype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-BoldItalic-BF674c459f252a6.otf') format('opentype');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-Extrabold-BF674c45a0138bd.otf') format('opentype');
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-ExtraboldItalic-BF674c45a019d30.otf') format('opentype');
+	font-weight: 800;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-Heavy-BF674c45a018e40.otf') format('opentype');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-HeavyItalic-BF674c45a01c420.otf') format('opentype');
+	font-weight: 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-Black-BF674c45a01f999.otf') format('opentype');
+	font-weight: 950;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eastman Roman';
+	src: url('../assets/fonts/eastman/EastmanRomanTrial-BlackItalic-BF674c45a01a98d.otf') format('opentype');
+	font-weight: 950;
+	font-style: italic;
+	font-display: swap;
+}
+
