@@ -1,0 +1,134 @@
+---
+import { Image } from 'astro:assets';
+import backgroundImage from '../assets/images/background2.webp';
+---
+
+<section class="relative min-h-screen flex items-center py-20 px-4 md:px-8 lg:px-16 font-sans overflow-hidden">
+	<!-- Background Image -->
+	<div class="absolute inset-0 z-0">
+		<Image
+			src={backgroundImage}
+			alt="Industrial background"
+			width={1920}
+			height={1080}
+			format="webp"
+			quality={80}
+			class="w-full h-full object-cover"
+			loading="lazy"
+		/>
+		<div class="absolute inset-0 bg-black/60 z-10"></div>
+	</div>
+
+	<!-- Content Container -->
+	<div class="relative z-20 w-full px-8 md:px-12 lg:px-16 xl:px-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-24 items-center">
+		<!-- Left Section -->
+		<div class="text-white" data-aos="fade-right" data-aos-duration="1000">
+			<p class="text-sm md:text-base uppercase tracking-wider mb-4 text-white/80 font-sans">
+				Proven
+			</p>
+			
+			<h2 class="text-6xl md:text-6xl lg:text-6xl xl:text-6xl font-bold uppercase leading-tight mb-6 italic font-sans">
+				<span class="text-white">BUILT TO</span>
+				<span class="text-white">HANDLE</span>
+				<span class="text-[#DC2626]">THE BIGGEST</span>
+				<span class="text-[#DC2626]">JOBS</span>
+			</h2>
+			
+			<p class="text-base md:text-lg text-white/90 mb-8 max-w-lg font-sans leading-relaxed">
+				We've earned the trust of manufacturers across industries. Our capacity and reliability speak for themselves.
+			</p>
+			
+			<button
+				type="button"
+				class="bg-gray-800 hover:bg-gray-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors font-sans"
+			>
+				Get started
+			</button>
+		</div>
+
+		<!-- Right Section - Stats Grid -->
+		<div class="grid grid-cols-2 gap-8 md:gap-10 lg:gap-12" data-aos="fade-left" data-aos-duration="1000">
+			<!-- Stat 1: 30-foot OVEN CAPACITY -->
+			<article class="text-white border-l-4 border-white/40 pl-5 md:pl-7 font-sans">
+				<h3 class="stat-number font-black uppercase leading-none mb-3">
+					<span class="block"><span class="stat-digits">30</span>-FOOT</span>
+					<span class="block text-sm md:text-base font-medium tracking-widest text-white/90 mt-2">OVEN CAPACITY</span>
+				</h3>
+			</article>
+
+			<!-- Stat 2: 48-hour TURNAROUND TIME -->
+			<article class="text-white border-l-4 border-white/40 pl-5 md:pl-7 font-sans">
+				<h3 class="stat-number font-black uppercase leading-none mb-3">
+					<span class="block"><span class="stat-digits">48</span>-HOUR</span>
+					<span class="block text-sm md:text-base font-medium tracking-widest text-white/90 mt-2">TURNAROUND TIME</span>
+				</h3>
+			</article>
+
+			<!-- Stat 3: Multi-industry TRUSTED PARTNER -->
+			<article class="text-white border-l-4 border-white/40 pl-5 md:pl-7 font-sans">
+				<h3 class="stat-number font-black uppercase leading-none mb-3">
+					<span class="block">MULTI-INDUSTRY</span>
+					<span class="block text-sm md:text-base font-medium tracking-widest text-white/90 mt-2">TRUSTED PARTNER</span>
+				</h3>
+			</article>
+
+			<!-- Stat 4: 20+ years OF EXPERTISE -->
+			<article class="text-white border-l-4 border-white/40 pl-5 md:pl-7 font-sans">
+				<h3 class="stat-number font-black uppercase leading-none mb-3">
+					<span class="block"><span class="stat-digits">20</span>+ YEARS</span>
+					<span class="block text-sm md:text-base font-medium tracking-widest text-white/90 mt-2">OF EXPERTISE</span>
+				</h3>
+			</article>
+		</div>
+	</div>
+</section>
+
+<style>
+	.stat-number {
+		font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		word-break: keep-all;
+		line-height: 1.1;
+		font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+	}
+	
+	.stat-digits {
+		font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		font-size: 1.1em;
+		display: inline-block;
+	}
+	
+	@media (min-width: 768px) {
+		.stat-number {
+			font-size: clamp(1.75rem, 4vw, 3rem);
+		}
+		
+		.stat-digits {
+			font-size: 1.15em;
+		}
+	}
+	
+	@media (min-width: 1024px) {
+		.stat-number {
+			font-size: clamp(2rem, 4.5vw, 3.5rem);
+		}
+		
+		.stat-digits {
+			font-size: 1.2em;
+		}
+	}
+	
+	@media (min-width: 1280px) {
+		.stat-number {
+			font-size: clamp(2.25rem, 5vw, 4rem);
+		}
+		
+		.stat-digits {
+			font-size: 1.25em;
+		}
+	}
+</style>
+

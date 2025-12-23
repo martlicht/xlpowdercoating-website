@@ -20,18 +20,18 @@ const videoSrc = typeof backgroundVideo === 'string' ? backgroundVideo : (backgr
 	<div class="absolute inset-0 bg-black/40 z-10"></div>
 
 	<!-- Content -->
-	<div class="relative z-20 px-24 py-16 text-center flex flex-col items-center justify-center min-h-screen gap-0">
+	<div class="relative z-20 px-24 py-16 text-center flex flex-col items-center justify-center min-h-screen gap-6">
 		<h1 
-			class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white uppercase leading-tight px-0  italic"
+			class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white uppercase leading-tight px-0 italic"
 			data-aos="fade-up"
 			data-aos-duration="1000"
 		>
-			INDUSTRIAL POWDER COATING
+			INDUSTRIAL POWDER COATING<br />
 			BUILT FOR SCALE
 		</h1>
 
 		<p 
-			class="text-lg md:text-xl lg:text-2xl text-white max-w-5xl mx-auto px-0 font-sans"
+			class="text-lg md:text-xl lg:text-2xl text-white max-w-5xl mx-auto px-0 font-sans mt-2"
 			data-aos="fade-up"
 			data-aos-delay="200"
 		>
@@ -40,7 +40,7 @@ const videoSrc = typeof backgroundVideo === 'string' ? backgroundVideo : (backgr
 
 		<!-- Email Subscription Form -->
 		<form 
-			class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto px-0 font-sans"
+			class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto w-full font-sans"
 			data-aos="fade-up"
 			data-aos-delay="400"
 		>
@@ -48,11 +48,11 @@ const videoSrc = typeof backgroundVideo === 'string' ? backgroundVideo : (backgr
 				type="email"
 				placeholder="Your email address"
 				required
-				class="w-full flex-1 px-2 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 font-sans"
+				class="flex-1 min-w-0 px-4 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 font-sans"
 			/>
 			<button
 				type="submit"
-				class="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition-colors whitespace-nowrap font-sans"
+				class="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition-colors whitespace-nowrap shrink-0 font-sans"
 			>
 				Get in touch
 			</button>
