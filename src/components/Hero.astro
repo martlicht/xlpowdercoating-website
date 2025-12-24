@@ -12,9 +12,10 @@ const videoSrc = typeof backgroundVideo === 'string' ? backgroundVideo : (backgr
 		muted 
 		playsinline
 		class="absolute inset-0 w-full h-full object-cover z-0"
-		preload="none"
+		preload="metadata"
+		poster=""
 	>
-		<source src={videoSrc} type="video/mp4" />
+		<source src={videoSrc} type="video/webm" />
 	</video>
 
 	<!-- Overlay for better text readability -->

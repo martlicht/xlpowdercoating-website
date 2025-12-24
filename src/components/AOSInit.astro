@@ -15,15 +15,20 @@
 			}
 		}
 		
-		// Cargar AOS desde CDN (más confiable en Astro)
+		// Cargar AOS de forma asíncrona para no bloquear el render
 		if (!window.AOS) {
+			// Cargar CSS de forma asíncrona
 			const link = document.createElement('link');
 			link.rel = 'stylesheet';
 			link.href = 'https://unpkg.com/aos@2.3.4/dist/aos.css';
+			link.media = 'print';
+			link.onload = function() { this.media = 'all'; };
 			document.head.appendChild(link);
 			
+			// Cargar script de forma defer para no bloquear
 			const script = document.createElement('script');
 			script.src = 'https://unpkg.com/aos@2.3.4/dist/aos.js';
+			script.defer = true;
 			script.onload = initAOS;
 			document.head.appendChild(script);
 		} else {
