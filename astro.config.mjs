@@ -11,6 +11,28 @@ export default defineConfig({
     mode: 'standalone'
   }),
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      cssMinify: true,
+      minify: 'esbuild', // Usar esbuild para mejor rendimiento
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            // Separar vendor chunks para mejor caching
+            if (id.includes('node_modules')) {
+              if (id.includes('aos')) {
+                return 'vendor-aos';
+              }
+              return 'vendor';
+            }
+          }
+        }
+      }
+    },
+    esbuild: {
+      // Eliminar console.log y debugger en producción
+      drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : []
+    }
   }
 });
