@@ -8,10 +8,27 @@ Esta aplicación está configurada como un sitio estático para desplegarse en C
 
 Configura las siguientes variables de entorno en Cloudflare Pages:
 
-- `PUBLIC_API_URL`: URL de la API externa (ej: `tristateawnings-production.up.railway.app`)
-- `PUBLIC_API_KEY`: API key para autenticación (ej: `landing_token`)
+#### Pasos para configurar variables de entorno:
 
-**Nota**: Las variables deben tener el prefijo `PUBLIC_` para que sean accesibles desde el cliente.
+1. Ve a tu proyecto en Cloudflare Pages Dashboard
+2. Navega a **Settings** → **Environment variables**
+3. Haz clic en **Add variable** para cada una:
+
+   **Variable 1:**
+   - **Name**: `PUBLIC_API_URL`
+   - **Value**: Tu URL de API (ej: `tristateawnings-production.up.railway.app` o `https://tristateawnings-production.up.railway.app`)
+   - **Environments**: Selecciona Production (y Preview/Development si lo deseas)
+   - Haz clic en **Save**
+
+   **Variable 2:**
+   - **Name**: `PUBLIC_API_KEY`
+   - **Value**: Tu API key (ej: `landing_token`)
+   - **Environments**: Selecciona Production (y Preview/Development si lo deseas)
+   - Haz clic en **Save**
+
+4. **Importante**: Después de agregar o modificar variables, necesitas hacer un nuevo deploy para que los cambios surtan efecto.
+
+**Nota**: Las variables deben tener el prefijo `PUBLIC_` para que sean accesibles desde el cliente en Astro.
 
 ### 2. Configuración del Build
 
@@ -20,6 +37,7 @@ En Cloudflare Pages, configura:
 - **Build command**: `npm run build`
 - **Build output directory**: `dist`
 - **Node version**: `22` (o la versión que uses)
+- **Deploy command**: (dejar vacío o no configurar - Cloudflare Pages detectará automáticamente el sitio estático)
 
 ### 3. Comandos de Build
 

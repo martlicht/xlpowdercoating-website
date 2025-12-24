@@ -1,6 +1,5 @@
-# Cloudflare Pages configuration
-# Este archivo es opcional pero útil para configuración local
+name = "xlpowdercoating-website"
+compatibility_date = "2025-12-24"
 
-[env.production]
-name = "xl-website"
-
+[assets]
+directory = "./dist"
