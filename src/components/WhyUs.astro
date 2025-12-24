@@ -1,0 +1,66 @@
+---
+import FeaturesAccordion from './FeaturesAccordion.astro';
+---
+
+<section class="bg-[#FFF9ED] py-12 px-4 md:px-8 lg:px-16 font-sans why-us-section">
+  <div class="w-full px-8 md:px-12 lg:px-16 xl:px-24">
+    <!-- Small Label -->
+    <p 
+      class="text-sm md:text-base tracking-wider text-gray-800 mb-4 font-bold"
+      data-aos="fade-up"
+      data-aos-duration="400"
+    >
+      Why us
+    </p>
+
+    <!-- Main Title -->
+    <h2
+      class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold italic uppercase leading-none mb-6 md:mb-8 font-sans"
+      data-aos="fade-up"
+      data-aos-duration="500"
+      data-aos-delay="50"
+    >
+      <span class="text-gray-900">WHAT SETS</span>
+      <span class="text-[#DC2626]"> XL POWDER</span><br />
+      <span class="text-[#DC2626]"> COATING APART</span>
+    </h2>
+
+    <!-- Description -->
+    <p
+      class="text-base sm:text-lg md:text-xl lg:text-xl text-gray-800 max-w-4xl leading-relaxed font-sans mb-12"
+      data-aos="fade-up"
+      data-aos-duration="500"
+      data-aos-delay="100"
+    >
+      We don't just coat parts. We handle the work that others turn away. Our
+      oven is the biggest in the region, and our process is built for speed
+      without compromise.
+    </p>
+  </div>
+
+  <!-- Accordion Section -->
+  <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="150">
+    <FeaturesAccordion />
+  </div>
+</section>
+
+<style>
+  /* Asegurar que los márgenes funcionen correctamente */
+  .why-us-section p {
+    margin-bottom: 1rem !important;
+  }
+
+  .why-us-section h2 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  @media (min-width: 768px) {
+    .why-us-section h2 {
+      margin-bottom: 2rem !important;
+    }
+
+    .why-us-section p:last-of-type {
+      margin-bottom: 3rem !important;
+    }
+  }
+</style>

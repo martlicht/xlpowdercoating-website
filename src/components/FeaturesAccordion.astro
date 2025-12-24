@@ -1,0 +1,343 @@
+---
+import FeatureItem from "./FeatureItem.astro";
+import ovenImage from "../assets/images/oven.webp";
+import expertiseImage from "../assets/images/expertise.webp";
+import durabilityImage from "../assets/images/durability.webp";
+import fastest from "../assets/images/fastest.webp";
+---
+
+<div class="w-full px-4 sm:px-6 md:px-12 lg:px-16 xl:px-24">
+  <div
+    class="accordion-container flex flex-col lg:flex-row gap-2 sm:gap-3 lg:gap-0 max-w-[1198px] mx-auto"
+  >
+    <FeatureItem
+      number="01"
+      title="LARGEST CAPACITY"
+      description="Our 30-foot oven handles oversized parts and high-volume runs that most shops can't manage."
+      bgColor="bg-[#1c1c1c]"
+      bgExpandedColor="bg-[#1c1c1c]"
+      imageSrc={ovenImage}
+      imageBgColor="bg-gray-700"
+      roundedClasses="rounded-tl-2xl rounded-bl-2xl lg:rounded-bl-2xl lg:rounded-tr-none"
+      isDefaultExpanded={true}
+    />
+
+    <FeatureItem
+      number="02"
+      title="20+ YEARS OF EXPERTISE"
+      description="Skilled technicians with years of powder coating and metal finishing experience."
+      bgColor="bg-[#ee2e24]"
+      imageSrc={expertiseImage}
+      bgExpandedColor="bg-[#d62920]"
+      imagePlaceholder="Expertise Image Placeholder"
+    />
+
+    <FeatureItem
+      number="03"
+      title="highest quality & durability"
+      description="Coatings that last. Built to endure rust, corrosion, and hard use."
+      bgColor="bg-[#f9d114]"
+      bgExpandedColor="bg-[#e0bc0f]"
+      imageSrc={durabilityImage}
+      imagePlaceholder="Durability Image Placeholder"
+    />
+
+    <FeatureItem
+      number="04"
+      title="FASTEST SERVICE"
+      description="Efficient processes and in-house prep for fast, reliable turnaround."
+      bgColor="bg-[#404040]"
+      bgExpandedColor="bg-[#404040]"
+      imageSrc={fastest}
+      imagePlaceholder="Service Image Placeholder"
+      roundedClasses="rounded-br-2xl lg:rounded-br-2xl lg:rounded-tr-2xl"
+    />
+  </div>
+</div>
+
+<script>
+  (function () {
+    const accordionItems = document.querySelectorAll(".accordion-item");
+    const container = document.querySelector(
+      ".accordion-container"
+    ) as HTMLElement;
+    let activeItem = "01";
+    let isAnimating = false;
+
+    function expandItem(itemNumber: string) {
+      if (!container || isAnimating) return;
+      
+      const isMobile = window.innerWidth < 1024;
+      
+      // En móvil, no usar animaciones complejas
+      if (isMobile) {
+        // Cerrar todos los items
+        accordionItems.forEach((item) => {
+          item.classList.remove("accordion-item-expanded");
+          const collapsed = item.querySelector(".accordion-collapsed-main") as HTMLElement;
+          const expanded = item.querySelector(".accordion-expanded-content") as HTMLElement;
+          const expandedWrapper = item.querySelector(".accordion-expanded-wrapper") as HTMLElement;
+          
+          if (collapsed) {
+            collapsed.classList.remove("hidden");
+            collapsed.style.display = "flex";
+            collapsed.style.opacity = "1";
+          }
+          if (expanded) {
+            expanded.classList.add("hidden");
+            expanded.style.display = "none";
+            expanded.style.opacity = "0";
+            expanded.style.transform = "none";
+          }
+          if (expandedWrapper) {
+            expandedWrapper.classList.remove("expanded-active");
+          }
+        });
+        
+        // Expandir el item seleccionado
+        accordionItems.forEach((item) => {
+          const itemData = item.getAttribute("data-item");
+          if (itemData === itemNumber) {
+            item.classList.add("accordion-item-expanded");
+            const collapsed = item.querySelector(".accordion-collapsed-main") as HTMLElement;
+            const expanded = item.querySelector(".accordion-expanded-content") as HTMLElement;
+            const expandedWrapper = item.querySelector(".accordion-expanded-wrapper") as HTMLElement;
+            
+            if (collapsed) {
+              collapsed.classList.add("hidden");
+              collapsed.style.display = "none";
+            }
+            if (expanded) {
+              expanded.classList.remove("hidden");
+              expanded.style.display = "flex";
+              expanded.style.opacity = "1";
+              expanded.style.transform = "none";
+            }
+            if (expandedWrapper) {
+              expandedWrapper.classList.add("expanded-active");
+            }
+            
+            // Hacer visible el contenido inmediatamente
+            const children = expanded.querySelectorAll("h3, p");
+            children.forEach((child) => {
+              const element = child as HTMLElement;
+              element.style.opacity = "1";
+              element.style.transform = "none";
+            });
+          }
+        });
+        
+        activeItem = itemNumber;
+        return;
+      }
+      
+      // Desktop: usar animaciones suaves
+      isAnimating = true;
+
+      // Close all items first with smooth animation
+      accordionItems.forEach((item) => {
+        const itemData = item.getAttribute("data-item");
+        item.classList.remove("accordion-item-expanded");
+
+        const collapsed = item.querySelector(
+          ".accordion-collapsed-main"
+        ) as HTMLElement;
+        const expanded = item.querySelector(
+          ".accordion-expanded-content"
+        ) as HTMLElement;
+        const expandedWrapper = item.querySelector(
+          ".accordion-expanded-wrapper"
+        ) as HTMLElement;
+
+        if (expandedWrapper) {
+          expandedWrapper.classList.remove("expanded-active");
+          expandedWrapper.classList.add("expanded-closing");
+        }
+
+        if (collapsed) {
+          collapsed.classList.remove("hidden");
+          collapsed.style.display = "flex";
+          collapsed.style.opacity = "0";
+          requestAnimationFrame(() => {
+            collapsed.style.transition = "opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+            collapsed.style.opacity = "1";
+          });
+        }
+        if (expanded) {
+          expanded.style.transition = "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+          expanded.style.opacity = "0";
+          expanded.style.transform = "translateX(-20px)";
+          setTimeout(() => {
+            expanded.classList.add("hidden");
+            expanded.style.display = "none";
+          }, 300);
+        }
+      });
+
+      // Expand the selected item with smooth animation
+      setTimeout(() => {
+        accordionItems.forEach((item) => {
+          const itemData = item.getAttribute("data-item");
+          if (itemData === itemNumber) {
+            item.classList.add("accordion-item-expanded");
+
+            const collapsed = item.querySelector(
+              ".accordion-collapsed-main"
+            ) as HTMLElement;
+            const expanded = item.querySelector(
+              ".accordion-expanded-content"
+            ) as HTMLElement;
+            const expandedWrapper = item.querySelector(
+              ".accordion-expanded-wrapper"
+            ) as HTMLElement;
+
+            if (collapsed) {
+              collapsed.style.transition = "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
+              collapsed.style.opacity = "0";
+              setTimeout(() => {
+                collapsed.classList.add("hidden");
+                collapsed.style.display = "none";
+              }, 300);
+            }
+
+            if (expanded) {
+              expanded.classList.remove("hidden");
+              expanded.style.display = "flex";
+              expanded.style.opacity = "0";
+              expanded.style.transform = "translateX(-20px)";
+
+              requestAnimationFrame(() => {
+                expanded.style.transition = "opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)";
+                expanded.style.opacity = "1";
+                expanded.style.transform = "translateX(0)";
+              });
+
+              if (expandedWrapper) {
+                expandedWrapper.classList.add("expanded-active");
+              }
+
+              // Animate children with stagger effect
+              const children = expanded.querySelectorAll("h3, p, .image-container");
+              children.forEach((child, index) => {
+                const element = child as HTMLElement;
+                element.style.opacity = "0";
+                element.style.transform = "translateY(20px)";
+                setTimeout(() => {
+                  element.style.transition = `opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 0.1}s`;
+                  element.style.opacity = "1";
+                  element.style.transform = "translateY(0)";
+                }, 200);
+              });
+            }
+
+            setTimeout(() => {
+              isAnimating = false;
+            }, 600);
+          }
+        });
+      }, 50);
+
+      activeItem = itemNumber;
+    }
+
+    // Add click handlers
+    accordionItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        const itemNumber = item.getAttribute("data-item");
+        const isMobile = window.innerWidth < 1024;
+        
+        if (!itemNumber) return;
+        
+        // En móvil, permitir expandir/colapsar cualquier item
+        // En desktop, solo expandir si es diferente al activo
+        if (isMobile || itemNumber !== activeItem) {
+          // Si es móvil y el item ya está expandido, colapsarlo
+          if (isMobile && itemNumber === activeItem && item.classList.contains("accordion-item-expanded")) {
+            // Colapsar el item actual (sin animaciones en móvil)
+            item.classList.remove("accordion-item-expanded");
+            const collapsed = item.querySelector(".accordion-collapsed-main") as HTMLElement;
+            const expanded = item.querySelector(".accordion-expanded-content") as HTMLElement;
+            const expandedWrapper = item.querySelector(".accordion-expanded-wrapper") as HTMLElement;
+            
+            if (collapsed) {
+              collapsed.classList.remove("hidden");
+              collapsed.style.display = "flex";
+              collapsed.style.opacity = "1";
+            }
+            if (expanded) {
+              expanded.classList.add("hidden");
+              expanded.style.display = "none";
+              expanded.style.opacity = "0";
+              expanded.style.transform = "none";
+            }
+            if (expandedWrapper) {
+              expandedWrapper.classList.remove("expanded-active");
+            }
+            activeItem = "";
+          } else {
+            expandItem(itemNumber);
+          }
+        }
+      });
+    });
+
+    // Initialize with item 01 expanded - only if not already expanded
+    const item01 = document.querySelector('[data-item="01"]') as HTMLElement;
+    if (item01 && !item01.classList.contains("accordion-item-expanded")) {
+      setTimeout(() => {
+        expandItem("01");
+      }, 100);
+    } else {
+      // Item 01 is already expanded, ensure content is visible
+      const expanded01 = item01?.querySelector(".accordion-expanded-content") as HTMLElement;
+      const wrapper01 = item01?.querySelector(".accordion-expanded-wrapper") as HTMLElement;
+      const collapsed01 = item01?.querySelector(".accordion-collapsed-main") as HTMLElement;
+      
+      if (expanded01) {
+        expanded01.style.display = "flex";
+        expanded01.style.opacity = "1";
+        expanded01.style.transform = "translateX(0)";
+      }
+      if (wrapper01) {
+        wrapper01.classList.add("expanded-active");
+      }
+      if (collapsed01) {
+        collapsed01.classList.add("hidden");
+        collapsed01.style.display = "none";
+      }
+      // Make children visible immediately (no animation delay)
+      const children = expanded01?.querySelectorAll(".accordion-title, .accordion-description, .accordion-image");
+      children?.forEach((child) => {
+        const element = child as HTMLElement;
+        element.style.opacity = "1";
+        element.style.transform = "translateY(0)";
+        element.style.transition = "none"; // Remove transition for initial state
+      });
+      
+      // After a brief moment, restore transitions for future animations
+      setTimeout(() => {
+        children?.forEach((child) => {
+          const element = child as HTMLElement;
+          element.style.transition = "";
+        });
+      }, 100);
+    }
+  })();
+</script>
+
+<style>
+  .accordion-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1198px;
+    gap: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .accordion-container {
+      flex-direction: row;
+      max-height: 720px;
+    }
+  }
+</style>

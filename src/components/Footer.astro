@@ -1,0 +1,151 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/icons/xl-logo.svg";
+---
+
+<footer class="bg-black text-white font-sans py-12 md:py-16">
+  <div class="w-full px-8 md:px-12 lg:px-16 xl:px-24">
+    <!-- Top Section: Logo and Navigation -->
+    <div
+      class="flex flex-col md:flex-row md:items-center md:justify-between gap-8 md:gap-12 mb-8 md:mb-12"
+    >
+      <!-- Logo -->
+      <div class="shrink-0">
+        <a href="/" class="inline-block">
+          <Image
+            src={logo}
+            alt="XL Powder Coating"
+            width={78}
+            height={33}
+            class="h-8 md:h-10 w-auto"
+          />
+        </a>
+      </div>
+
+      <!-- Navigation Menu -->
+      <!-- <nav>
+        <ul class="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8">
+          <li>
+            <a
+              href="#about"
+              class="text-white hover:text-white/80 transition-colors text-sm md:text-base"
+            >
+              About us
+            </a>
+          </li>
+          <li>
+            <a
+              href="#services"
+              class="text-white hover:text-white/80 transition-colors text-sm md:text-base"
+            >
+              Services
+            </a>
+          </li>
+          <li>
+            <a
+              href="#gallery"
+              class="text-white hover:text-white/80 transition-colors text-sm md:text-base"
+            >
+              Gallery
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="text-white hover:text-white/80 transition-colors text-sm md:text-base"
+            >
+              Contact
+            </a>
+          </li>
+          <li>
+            <a
+              href="#faq"
+              class="text-white hover:text-white/80 transition-colors text-sm md:text-base"
+            >
+              FAQ
+            </a>
+          </li>
+        </ul>
+      </nav> -->
+    </div>
+
+    <!-- Separator Line -->
+    <div class="border-t border-white/20 mb-8 md:mb-12"></div>
+
+    <!-- Bottom Section: Legal Links and Copyright -->
+    <div
+      class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-8"
+    >
+      <nav>
+        <ul class="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8">
+          <li>
+            <a
+              href="#about"
+              class="text-white hover:text-white/80 transition-colors text-sm md:text-base"
+            >
+              About us
+            </a>
+          </li>
+          <li>
+            <a
+              href="#services"
+              class="text-white hover:text-white/80 transition-colors text-sm md:text-base"
+            >
+              Services
+            </a>
+          </li>
+          <li>
+            <a
+              href="#gallery"
+              class="text-white hover:text-white/80 transition-colors text-sm md:text-base"
+            >
+              Gallery
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="text-white hover:text-white/80 transition-colors text-sm md:text-base"
+            >
+              Contact
+            </a>
+          </li>
+          <li>
+            <a
+              href="#faq"
+              class="text-white hover:text-white/80 transition-colors text-sm md:text-base"
+            >
+              FAQ
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- Legal Links -->
+      <!-- <div class="flex flex-wrap items-center gap-4 md:gap-6">
+        <a
+          href="#privacy"
+          class="text-white hover:text-white/80 underline text-sm md:text-base transition-colors"
+        >
+          Privacy Policy
+        </a>
+        <a
+          href="#terms"
+          class="text-white hover:text-white/80 underline text-sm md:text-base transition-colors"
+        >
+          Terms of Service
+        </a>
+        <a
+          href="#cookies"
+          class="text-white hover:text-white/80 underline text-sm md:text-base transition-colors"
+        >
+          Cookies Settings
+        </a>
+      </div> -->
+
+      <!-- Copyright -->
+      <div class="text-white/80 text-sm md:text-base">
+        © 2025 XL Powder Coating. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>

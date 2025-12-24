@@ -1,0 +1,378 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  bgColor: string;
+  imagePlaceholder?: string;
+  imageSrc?: ImageMetadata;
+  roundedClasses?: string;
+  isDefaultExpanded?: boolean;
+  imageBgColor?: string;
+  bgExpandedColor?: string;
+}
+
+const {
+  number,
+  title,
+  description,
+  bgColor,
+  imagePlaceholder,
+  imageSrc,
+  roundedClasses = "",
+  isDefaultExpanded = false,
+  imageBgColor = "bg-white/10",
+  bgExpandedColor = "bg-gray-900",
+} = Astro.props;
+---
+
+<div
+  class={`accordion-item ${isDefaultExpanded ? "accordion-item-expanded" : ""} ${bgExpandedColor}  ${roundedClasses} cursor-pointer transition-all duration-500 ease-in-out relative overflow-hidden`}
+  data-item={number}
+  style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;"
+>
+  <!-- Collapsed View -->
+  <div
+    class={`accordion-collapsed-main flex flex-row lg:flex-col items-center justify-between px-6 py-4 sm:px-8 sm:py-5 lg:p-2 md:p-3 hover:opacity-90 h-full min-h-[80px] sm:min-h-[100px] ${isDefaultExpanded ? "hidden" : ""} ${bgColor}`}
+  >
+    <div
+      class="text-white text-3xl sm:text-4xl md:text-3xl font-bold lg:mt-2 md:mt-3"
+    >
+      {number}
+    </div>
+    <div class="mb-2 md:mb-4 vertical-text-container">
+      <p
+        class="text-white uppercase font-bold text-lg md:text-xl lg:text-4xl writing-vertical-rl lg:rotate-180"
+      >
+        {title}
+      </p>
+    </div>
+  </div>
+
+  <!-- Expanded View -->
+  <div
+    class={`flex flex-col lg:flex-row h-full accordion-expanded-wrapper ${isDefaultExpanded ? "expanded-active" : ""}`}
+  >
+    <!-- Left Side that looks like the collapsed view - hidden on mobile -->
+    <div
+      class={`hidden lg:flex accordion-collapsed flex-col items-center justify-between p-2 md:p-3 hover:opacity-90 h-full ${bgColor} ${isDefaultExpanded ? "hidden" : ""}`}
+    >
+      <div class="text-white text-2xl md:text-3xl font-bold mt-2 md:mt-3">
+        {number}
+      </div>
+      <div class="mb-2 md:mb-4 vertical-text-container">
+        <p
+          class="text-white uppercase font-bold text-lg md:text-xl lg:text-4xl writing-vertical-rl lg:rotate-180"
+        >
+          {title}
+        </p>
+      </div>
+    </div>
+    <div
+      class={`accordion-expanded-content relative z-20 p-6 sm:p-8 md:p-10 lg:p-14 xl:p-20 h-full flex flex-col justify-start ${bgExpandedColor} ${isDefaultExpanded ? "" : "hidden"}`}
+      style={isDefaultExpanded
+        ? "display: flex !important; opacity: 1 !important; transform: translateX(0) !important;"
+        : "display: none;"}
+      data-initial-expanded={isDefaultExpanded ? "true" : "false"}
+    >
+      <!-- Title -->
+      <h3
+        class="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold uppercase mb-4 sm:mb-5 md:mb-6 accordion-title leading-tight"
+        style={isDefaultExpanded
+          ? "opacity: 1 !important; transform: translateY(0) !important;"
+          : ""}
+      >
+        {title}
+      </h3>
+
+      <!-- Description -->
+      <p
+        class="text-white/90 text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 md:mb-8 max-w-2xl accordion-description leading-relaxed"
+        style={isDefaultExpanded
+          ? "opacity: 1 !important; transform: translateY(0) !important;"
+          : ""}
+      >
+        {description}
+      </p>
+
+      <!-- Image - Hidden on mobile -->
+      <div
+        class="hidden md:flex flex-1 items-center justify-center mt-4 sm:mt-5 image-container accordion-image"
+        style={isDefaultExpanded
+          ? "opacity: 1 !important; transform: translateY(0) !important;"
+          : ""}
+      >
+        {
+          imageSrc ? (
+            <Image
+              src={imageSrc}
+              alt={title}
+              class="w-full h-full object-cover rounded-lg"
+            />
+          ) : (
+            <div
+              class={`w-full h-full ${imageBgColor} rounded-lg flex items-center justify-center`}
+            >
+              <span class="text-white/50 text-lg">
+                {imagePlaceholder || "Image Placeholder"}
+              </span>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .accordion-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    min-height: 80px;
+    width: 100%;
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .accordion-item {
+      min-height: 100px;
+      border-radius: 1rem;
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .accordion-item {
+      flex: 1 1 0;
+      min-width: 0;
+      min-height: 200px;
+      transition: flex 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: auto;
+      border-radius: 0;
+      margin-bottom: 0;
+    }
+
+    .accordion-item:not(.accordion-item-expanded) {
+      flex: 0 0 auto;
+      min-width: 80px;
+      max-width: 120px;
+    }
+
+    .accordion-item.accordion-item-expanded {
+      flex: 2 1 0;
+      min-width: 400px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .accordion-item-expanded {
+    z-index: 10;
+  }
+
+  .accordion-expanded-wrapper {
+    opacity: 0;
+  }
+
+  /* Transiciones solo en desktop */
+  @media (min-width: 1024px) {
+    .accordion-expanded-wrapper {
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  /* En móvil, sin transiciones */
+  @media (max-width: 1023px) {
+    .accordion-expanded-wrapper {
+      transition: none;
+      opacity: 1;
+    }
+
+    .accordion-item-expanded .accordion-expanded-wrapper,
+    .accordion-expanded-wrapper.expanded-active {
+      opacity: 1 !important;
+    }
+  }
+
+  .accordion-item-expanded .accordion-expanded-wrapper,
+  .accordion-expanded-wrapper.expanded-active {
+    opacity: 1 !important;
+  }
+
+  @media (min-width: 1024px) {
+    .accordion-expanded-wrapper.expanded-closing {
+      opacity: 0;
+    }
+  }
+
+  /* Asegurar que el contenido expandido sea visible cuando el item está expandido */
+  .accordion-item-expanded .accordion-expanded-content {
+    display: flex !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  }
+
+  /* Asegurar que los márgenes funcionen correctamente */
+  .accordion-expanded-content h3 {
+    margin-bottom: 1rem !important;
+  }
+
+  @media (min-width: 640px) {
+    .accordion-expanded-content h3 {
+      margin-bottom: 1.25rem !important;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .accordion-expanded-content h3 {
+      margin-bottom: 1.5rem !important;
+    }
+  }
+
+  .accordion-expanded-content p {
+    margin-bottom: 1.25rem !important;
+  }
+
+  @media (min-width: 640px) {
+    .accordion-expanded-content p {
+      margin-bottom: 1.5rem !important;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .accordion-expanded-content p {
+      margin-bottom: 2rem !important;
+    }
+  }
+
+  /* Animaciones para elementos dentro del contenido expandido - solo en desktop */
+  @media (min-width: 1024px) {
+    .accordion-expanded-content .accordion-title,
+    .accordion-expanded-content .accordion-description,
+    .accordion-expanded-content .accordion-image {
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+  }
+
+  /* En móvil, sin animaciones - mostrar contenido inmediatamente */
+  @media (max-width: 1023px) {
+    .accordion-expanded-content .accordion-title,
+    .accordion-expanded-content .accordion-description {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .accordion-item-expanded .accordion-expanded-content {
+      opacity: 1 !important;
+      display: flex !important;
+    }
+
+    .accordion-item-expanded .accordion-expanded-content .accordion-title,
+    .accordion-item-expanded
+      .accordion-expanded-content
+      .accordion-description {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* La imagen está oculta en móvil */
+    .accordion-expanded-content .accordion-image {
+      display: none !important;
+    }
+  }
+
+  /* Mostrar contenido cuando el item está expandido (incluyendo estado inicial) */
+  .accordion-item-expanded .accordion-expanded-content {
+    display: flex !important;
+  }
+
+  /* Asegurar que el contenido inicialmente expandido sea visible en desktop */
+  @media (min-width: 1024px) {
+    .accordion-item-expanded .accordion-expanded-content .accordion-title,
+    .accordion-item-expanded .accordion-expanded-content .accordion-description,
+    .accordion-item-expanded .accordion-expanded-content .accordion-image {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+  }
+
+  /* Contenedor de imagen - máximo 544x400px, responsive */
+  .accordion-expanded-content .image-container {
+    max-width: 100%;
+    max-height: 220px;
+    width: 100%;
+    min-height: 180px;
+  }
+
+  @media (min-width: 640px) {
+    .accordion-expanded-content .image-container {
+      max-width: 100%;
+      max-height: 280px;
+      min-height: 220px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .accordion-expanded-content .image-container {
+      max-width: 480px;
+      max-height: 360px;
+      min-height: 300px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .accordion-expanded-content .image-container {
+      max-width: 544px;
+      max-height: 400px;
+      min-height: 350px;
+    }
+  }
+
+  /* Texto vertical en modo colapsado - solo en desktop */
+  .accordion-collapsed-main .vertical-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 1024px) {
+    .accordion-collapsed-main .vertical-text-container {
+      transform: scaleY(-1);
+    }
+
+    .accordion-collapsed-main .vertical-text-container .writing-vertical-rl {
+      writing-mode: vertical-lr;
+      white-space: nowrap;
+      margin-bottom: 1rem;
+      transform: scaleY(-1);
+    }
+  }
+
+  /* Texto vertical en el lado izquierdo cuando está expandido */
+  @media (min-width: 1024px) {
+    .accordion-collapsed .vertical-text-container {
+      transform: scaleY(-1);
+    }
+
+    .accordion-collapsed .vertical-text-container .writing-vertical-rl {
+      writing-mode: vertical-lr;
+      white-space: nowrap;
+      transform: scaleY(-1);
+    }
+  }
+
+  /* Asegurar que la imagen esté oculta en móvil */
+  @media (max-width: 767px) {
+    .accordion-expanded-content .image-container {
+      display: none !important;
+    }
+  }
+</style>

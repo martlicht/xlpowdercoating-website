@@ -3,12 +3,12 @@ import { Image } from 'astro:assets';
 import backgroundImage from '../assets/images/background2.webp';
 ---
 
-<section class="relative min-h-screen flex items-center py-20 px-4 md:px-8 lg:px-16 font-sans overflow-hidden">
+<section id="about" class="relative min-h-screen flex items-center py-20 px-4 md:px-8 lg:px-16 font-sans overflow-hidden">
 	<!-- Background Image -->
-	<div class="absolute inset-0 z-0">
+	<div class="absolute inset-0 z-0" aria-hidden="true">
 		<Image
 			src={backgroundImage}
-			alt="Industrial background"
+			alt="XL Industrial Powder Coating facility with large-scale manufacturing equipment"
 			width={1920}
 			height={1080}
 			format="webp"
@@ -22,68 +22,108 @@ import backgroundImage from '../assets/images/background2.webp';
 	<!-- Content Container -->
 	<div class="relative z-20 w-full px-8 md:px-12 lg:px-16 xl:px-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-24 items-center">
 		<!-- Left Section -->
-		<div class="text-white" data-aos="fade-right" data-aos-duration="1000">
-			<p class="text-sm md:text-base uppercase tracking-wider mb-4 text-white/80 font-sans">
+		<header class="text-white features-header" data-aos="fade-right" data-aos-duration="500">
+			<p class="text-sm md:text-base uppercase tracking-wider text-white/80 font-sans">
 				Proven
 			</p>
 			
-			<h2 class="text-6xl md:text-6xl lg:text-6xl xl:text-6xl font-bold uppercase leading-tight mb-6 italic font-sans">
-				<span class="text-white">BUILT TO</span>
-				<span class="text-white">HANDLE</span>
+			<h2 class="text-6xl md:text-6xl lg:text-6xl xl:text-6xl font-bold uppercase leading-none italic font-sans">
+				<span>BUILT TO HANDLE</span>
 				<span class="text-[#DC2626]">THE BIGGEST</span>
 				<span class="text-[#DC2626]">JOBS</span>
 			</h2>
 			
-			<p class="text-base md:text-lg text-white/90 mb-8 max-w-lg font-sans leading-relaxed">
+			<p class="text-base md:text-lg text-white/90 max-w-lg font-sans leading-relaxed">
 				We've earned the trust of manufacturers across industries. Our capacity and reliability speak for themselves.
 			</p>
 			
-			<button
-				type="button"
-				class="bg-gray-800 hover:bg-gray-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors font-sans"
+			<a
+				href="#contact"
+				class="inline-block bg-white/10 hover:bg-[#DC2626] text-white w-48 px-8 py-4 rounded-lg font-semibold transition-colors font-sans text-center"
+				aria-label="Get started with XL Industrial Powder Coating services"
 			>
 				Get started
-			</button>
-		</div>
+			</a>
+		</header>
 
 		<!-- Right Section - Stats Grid -->
-		<div class="grid grid-cols-2 gap-8 md:gap-10 lg:gap-12" data-aos="fade-left" data-aos-duration="1000">
+		<dl class="grid grid-cols-2 gap-8 md:gap-10 lg:gap-12" data-aos="fade-left" data-aos-duration="500" itemscope itemtype="https://schema.org/Organization">
 			<!-- Stat 1: 30-foot OVEN CAPACITY -->
-			<article class="text-white border-l-4 border-white/40 pl-5 md:pl-7 font-sans">
-				<h3 class="stat-number font-black uppercase leading-none mb-3">
-					<span class="block"><span class="stat-digits">30</span>-FOOT</span>
+			<div class="text-white border-l-4 border-white/40 pl-5 md:pl-7 font-sans">
+				<dt class="sr-only">Oven Capacity</dt>
+				<dd class="stat-number font-black uppercase leading-none mb-3" itemprop="description">
+					<span class="block"><span class="stat-digits" itemprop="value">30</span>-FOOT</span>
 					<span class="block text-sm md:text-base font-medium tracking-widest text-white/90 mt-2">OVEN CAPACITY</span>
-				</h3>
-			</article>
+				</dd>
+			</div>
 
 			<!-- Stat 2: 48-hour TURNAROUND TIME -->
-			<article class="text-white border-l-4 border-white/40 pl-5 md:pl-7 font-sans">
-				<h3 class="stat-number font-black uppercase leading-none mb-3">
-					<span class="block"><span class="stat-digits">48</span>-HOUR</span>
+			<div class="text-white border-l-4 border-white/40 pl-5 md:pl-7 font-sans">
+				<dt class="sr-only">Turnaround Time</dt>
+				<dd class="stat-number font-black uppercase leading-none mb-3" itemprop="description">
+					<span class="block"><span class="stat-digits" itemprop="value">48</span>-HOUR</span>
 					<span class="block text-sm md:text-base font-medium tracking-widest text-white/90 mt-2">TURNAROUND TIME</span>
-				</h3>
-			</article>
+				</dd>
+			</div>
 
 			<!-- Stat 3: Multi-industry TRUSTED PARTNER -->
-			<article class="text-white border-l-4 border-white/40 pl-5 md:pl-7 font-sans">
-				<h3 class="stat-number font-black uppercase leading-none mb-3">
+			<div class="text-white border-l-4 border-white/40 pl-5 md:pl-7 font-sans">
+				<dt class="sr-only">Industry Coverage</dt>
+				<dd class="stat-number font-black uppercase leading-none mb-3" itemprop="description">
 					<span class="block">MULTI-INDUSTRY</span>
 					<span class="block text-sm md:text-base font-medium tracking-widest text-white/90 mt-2">TRUSTED PARTNER</span>
-				</h3>
-			</article>
+				</dd>
+			</div>
 
 			<!-- Stat 4: 20+ years OF EXPERTISE -->
-			<article class="text-white border-l-4 border-white/40 pl-5 md:pl-7 font-sans">
-				<h3 class="stat-number font-black uppercase leading-none mb-3">
-					<span class="block"><span class="stat-digits">20</span>+ YEARS</span>
+			<div class="text-white border-l-4 border-white/40 pl-5 md:pl-7 font-sans">
+				<dt class="sr-only">Years of Experience</dt>
+				<dd class="stat-number font-black uppercase leading-none mb-3" itemprop="description">
+					<span class="block"><span class="stat-digits" itemprop="value">20</span>+ YEARS</span>
 					<span class="block text-sm md:text-base font-medium tracking-widest text-white/90 mt-2">OF EXPERTISE</span>
-				</h3>
-			</article>
-		</div>
+				</dd>
+			</div>
+		</dl>
 	</div>
 </section>
 
 <style>
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border-width: 0;
+	}
+
+	.features-header {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.features-header > p:first-of-type {
+		margin-bottom: 1rem !important;
+		margin-top: 0 !important;
+	}
+
+	.features-header > h2 {
+		margin-bottom: 1.5rem !important;
+		margin-top: 0 !important;
+	}
+
+	.features-header > p:nth-of-type(2) {
+		margin-bottom: 2rem !important;
+		margin-top: 0 !important;
+	}
+
+	.features-header > a {
+		margin-top: 0 !important;
+	}
+
 	.stat-number {
 		font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
 		font-weight: 900;

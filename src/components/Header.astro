@@ -3,54 +3,354 @@ import { Image } from 'astro:assets';
 import logo from '../assets/icons/xl-logo.svg';
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-[#FFF9ED] rounded-b-lg shadow-sm font-sans">
-	<nav class=" mx-full px-4 md:px-6 lg:px-16 py-6 flex items-center justify-between min-h-[80px]">
+<header class="header-scroll fixed top-0 left-0 right-0 z-50 bg-[#FFF9ED]/95 backdrop-blur-md rounded-b-lg shadow-sm font-sans transition-all duration-300 ease-in-out" id="main-header">
+	<nav class="mx-full px-3 sm:px-4 md:px-6 lg:px-16 py-3 sm:py-4 md:py-6 flex items-center justify-between min-h-[60px] sm:min-h-[70px] md:min-h-[80px] transition-all duration-300">
 		<!-- Logo -->
-		<a href="/" class="">
+		<a href="/" class="shrink-0 z-50">
 			<Image 
 				src={logo} 
 				alt="XL Powder Coating" 
 				width={78} 
 				height={33}
-				class="h-9 w-auto ml-10"
+				class="h-7 sm:h-8 md:h-9 w-auto ml-0 sm:ml-2 md:ml-10"
 			/>
 		</a>
 
 		<!-- Navigation Links - Desktop (Centered) -->
-		<ul class="hidden md:flex items-center gap-10 absolute left-1/2 transform -translate-x-1/2">
+		<ul class="hidden md:flex items-center gap-6 lg:gap-10 absolute left-1/2 transform -translate-x-1/2">
 			<li>
-				<a href="#about" class="text-gray-800 hover:text-gray-600 transition-all duration-300 font-medium py-2 relative group">
+				<a href="#about" class="text-gray-800 hover:text-gray-600 transition-all duration-300 font-medium py-2 relative group text-sm lg:text-base">
 					About us
 					<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#DC2626] transition-all duration-300 group-hover:w-full"></span>
 				</a>
 			</li>
 			<li>
-				<a href="#services" class="text-gray-800 hover:text-gray-600 transition-all duration-300 font-medium py-2 relative group">
+				<a href="#services" class="text-gray-800 hover:text-gray-600 transition-all duration-300 font-medium py-2 relative group text-sm lg:text-base">
 					Services
 					<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#DC2626] transition-all duration-300 group-hover:w-full"></span>
 				</a>
 			</li>
 			<li>
-				<a href="#gallery" class="text-gray-800 hover:text-gray-600 transition-all duration-300 font-medium py-2 relative group">
+				<a href="#gallery" class="text-gray-800 hover:text-gray-600 transition-all duration-300 font-medium py-2 relative group text-sm lg:text-base">
 					Gallery
 					<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#DC2626] transition-all duration-300 group-hover:w-full"></span>
 				</a>
 			</li>
 			<li>
-				<a href="#process" class="text-gray-800 hover:text-gray-600 transition-all duration-300 font-medium py-2 relative group">
+				<a href="#process" class="text-gray-800 hover:text-gray-600 transition-all duration-300 font-medium py-2 relative group text-sm lg:text-base">
 					Process
 					<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#DC2626] transition-all duration-300 group-hover:w-full"></span>
 				</a>
 			</li>
 		</ul>
 
-		<!-- Contact Button -->
+		<!-- Desktop Contact Button -->
 		<a 
 			href="#contact" 
-			class="bg-[#DC2626] hover:bg-[#B91C1C] text-white px-10 py-3.5 rounded-lg font-medium transition-colors shadow-md"
+			class="hidden md:block bg-[#DC2626] hover:bg-[#B91C1C] text-white px-8 lg:px-10 py-3.5 rounded-lg font-medium transition-colors shadow-md text-sm lg:text-base whitespace-nowrap"
 		>
 			Contact Us
 		</a>
+
+		<!-- Mobile Menu Button (Hamburger) -->
+		<button
+			type="button"
+			class="md:hidden flex flex-col justify-center items-center w-10 h-10 z-50 focus:outline-none group gap-2"
+			aria-label="Toggle menu"
+			aria-expanded="false"
+			id="mobile-menu-button"
+		>
+			<span class="mobile-menu-line block w-7 h-0.5 bg-[#DC2626] rounded-full transition-all duration-300 ease-in-out group-hover:bg-[#B91C1C]"></span>
+			<span class="mobile-menu-line block w-7 h-0.5 bg-[#DC2626] rounded-full transition-all duration-300 ease-in-out group-hover:bg-[#B91C1C]"></span>
+			<span class="mobile-menu-line block w-7 h-0.5 bg-[#DC2626] rounded-full transition-all duration-300 ease-in-out group-hover:bg-[#B91C1C]"></span>
+		</button>
 	</nav>
 </header>
+
+<!-- Mobile Menu Overlay - Outside header to avoid z-index conflicts -->
+<div 
+	class="mobile-menu-overlay fixed inset-0 z-[60] transform -translate-y-full transition-transform duration-300 ease-in-out md:hidden pointer-events-none"
+	id="mobile-menu"
+>
+	<div class="flex flex-col items-center justify-center min-h-screen px-6 py-20 space-y-8">
+		<!-- Mobile Navigation Links -->
+		<a 
+			href="#about" 
+			class="mobile-menu-link text-2xl font-semibold text-gray-800 hover:text-[#DC2626] transition-colors duration-300 py-2"
+		>
+			About us
+		</a>
+		<a 
+			href="#services" 
+			class="mobile-menu-link text-2xl font-semibold text-gray-800 hover:text-[#DC2626] transition-colors duration-300 py-2"
+		>
+			Services
+		</a>
+		<a 
+			href="#gallery" 
+			class="mobile-menu-link text-2xl font-semibold text-gray-800 hover:text-[#DC2626] transition-colors duration-300 py-2"
+		>
+			Gallery
+		</a>
+		<a 
+			href="#process" 
+			class="mobile-menu-link text-2xl font-semibold text-gray-800 hover:text-[#DC2626] transition-colors duration-300 py-2"
+		>
+			Process
+		</a>
+		
+		<!-- Mobile Contact Button -->
+		<a 
+			href="#contact" 
+			class="mobile-menu-link bg-[#DC2626] hover:bg-[#B91C1C] text-white px-8 py-4 rounded-lg font-semibold transition-colors shadow-md text-lg mt-4"
+		>
+			Contact Us
+		</a>
+	</div>
+</div>
+
+<script>
+	(function() {
+		const menuButton = document.getElementById('mobile-menu-button') as HTMLButtonElement | null;
+		const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
+		const menuLines = document.querySelectorAll('.mobile-menu-line') as NodeListOf<HTMLElement>;
+		const menuLinks = document.querySelectorAll('.mobile-menu-link') as NodeListOf<HTMLElement>;
+		const header = document.getElementById('main-header') as HTMLElement | null;
+		let isMenuOpen = false;
+
+		function toggleMenu() {
+			if (!menuButton || !mobileMenu) return;
+			
+			isMenuOpen = !isMenuOpen;
+			
+			// Toggle menu visibility
+			if (isMenuOpen) {
+				mobileMenu.classList.remove('-translate-y-full', 'pointer-events-none');
+				mobileMenu.classList.add('translate-y-0', 'pointer-events-auto');
+				menuButton.setAttribute('aria-expanded', 'true');
+				document.body.style.overflow = 'hidden';
+			} else {
+				mobileMenu.classList.remove('translate-y-0', 'pointer-events-auto');
+				mobileMenu.classList.add('-translate-y-full', 'pointer-events-none');
+				menuButton.setAttribute('aria-expanded', 'false');
+				document.body.style.overflow = '';
+			}
+
+			// Animate hamburger icon
+			if (isMenuOpen && menuLines.length >= 3) {
+				menuLines[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+				menuLines[1].style.opacity = '0';
+				menuLines[1].style.transform = 'translateX(-10px)';
+				menuLines[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+			} else if (menuLines.length >= 3) {
+				menuLines[0].style.transform = '';
+				menuLines[1].style.opacity = '1';
+				menuLines[1].style.transform = '';
+				menuLines[2].style.transform = '';
+			}
+		}
+
+		// Smooth scroll function
+		function smoothScrollTo(targetId: string) {
+			const targetElement = document.querySelector(targetId);
+			if (targetElement) {
+				const headerHeight = header?.offsetHeight || 80;
+				const targetPosition = (targetElement as HTMLElement).offsetTop - headerHeight;
+				
+				window.scrollTo({
+					top: Math.max(0, targetPosition),
+					behavior: 'smooth'
+				});
+			}
+		}
+
+		// Toggle menu on button click
+		menuButton?.addEventListener('click', toggleMenu);
+
+		// Handle navigation links with smooth scroll
+		const allNavLinks = document.querySelectorAll('a[href^="#"]');
+		allNavLinks.forEach(link => {
+			link.addEventListener('click', (e) => {
+				const href = link.getAttribute('href');
+				if (href && href.startsWith('#') && href !== '#') {
+					e.preventDefault();
+					
+					// Close mobile menu if open
+					if (isMenuOpen) {
+						toggleMenu();
+					}
+					
+					// Small delay to allow menu to close before scrolling
+					setTimeout(() => {
+						smoothScrollTo(href);
+					}, 100);
+				}
+			});
+		});
+
+		// Close menu on escape key
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && isMenuOpen) {
+				toggleMenu();
+			}
+		});
+
+		// Close menu when clicking outside (on overlay)
+		mobileMenu?.addEventListener('click', (e) => {
+			if (e.target === mobileMenu) {
+				if (isMenuOpen) {
+					toggleMenu();
+				}
+			}
+		});
+
+		// Handle window resize - close mobile menu if window becomes desktop size
+		window.addEventListener('resize', () => {
+			if (window.innerWidth >= 768 && isMenuOpen) {
+				toggleMenu();
+			}
+		});
+	})();
+
+	// Header Scroll Animations
+	(function() {
+		const header = document.getElementById('main-header') as HTMLElement | null;
+		if (!header) return;
+		
+		// Enable smooth scrolling globally
+		document.documentElement.style.scrollBehavior = 'smooth';
+
+		let lastScrollY = window.scrollY;
+		let ticking = false;
+		const scrollThreshold = 100; // Pixels to scroll before hiding header
+
+		function updateHeader() {
+			if (!header) return;
+			
+			const currentScrollY = window.scrollY;
+			const scrollDifference = currentScrollY - lastScrollY;
+
+			// Add scrolled class when scrolled down
+			if (currentScrollY > 50) {
+				header.classList.add('header-scrolled');
+			} else {
+				header.classList.remove('header-scrolled');
+			}
+
+			// Hide/show header based on scroll direction
+			if (Math.abs(scrollDifference) > 5) { // Only trigger if scroll is significant
+				if (scrollDifference > 0 && currentScrollY > scrollThreshold) {
+					// Scrolling down - hide header
+					header.classList.add('header-hidden');
+				} else if (scrollDifference < 0) {
+					// Scrolling up - show header
+					header.classList.remove('header-hidden');
+				}
+			}
+
+			lastScrollY = currentScrollY;
+			ticking = false;
+		}
+
+		function onScroll() {
+			if (!ticking) {
+				window.requestAnimationFrame(updateHeader);
+				ticking = true;
+			}
+		}
+
+		window.addEventListener('scroll', onScroll, { passive: true });
+		
+		// Initial check
+		updateHeader();
+	})();
+</script>
+
+<style>
+	/* Header Scroll Animations */
+	.header-scroll {
+		transform: translateY(0);
+		transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+		            box-shadow 0.3s ease,
+		            background-color 0.3s ease;
+	}
+
+	.header-scroll.header-hidden {
+		transform: translateY(-100%);
+	}
+
+	.header-scroll.header-scrolled {
+		background-color: rgba(255, 249, 237, 0.98);
+		backdrop-filter: blur(12px);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	}
+
+	.header-scroll.header-scrolled nav {
+		padding-top: 0.75rem;
+		padding-bottom: 0.75rem;
+	}
+
+	@media (min-width: 768px) {
+		.header-scroll.header-scrolled nav {
+			padding-top: 1rem;
+			padding-bottom: 1rem;
+		}
+	}
+
+	.mobile-menu-overlay {
+		position: fixed !important;
+		top: 0 !important;
+		left: 0 !important;
+		right: 0 !important;
+		bottom: 0 !important;
+		width: 100vw !important;
+		height: 100vh !important;
+		background-color: #FFF9ED !important;
+		background: #FFF9ED !important;
+		backdrop-filter: blur(12px) !important;
+		-webkit-backdrop-filter: blur(12px) !important;
+		z-index: 60 !important;
+	}
+	
+	#mobile-menu.translate-y-0 {
+		background-color: #FFF9ED !important;
+		background: #FFF9ED !important;
+		background-image: none !important;
+	}
+	
+	#mobile-menu.translate-y-0::before {
+		content: none !important;
+	}
+
+	.mobile-menu-link {
+		opacity: 0;
+		transform: translateY(-10px);
+		transition: opacity 0.3s ease, transform 0.3s ease;
+	}
+
+	#mobile-menu.translate-y-0 .mobile-menu-link {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	#mobile-menu.translate-y-0 .mobile-menu-link:nth-child(1) {
+		transition-delay: 0.1s;
+	}
+
+	#mobile-menu.translate-y-0 .mobile-menu-link:nth-child(2) {
+		transition-delay: 0.2s;
+	}
+
+	#mobile-menu.translate-y-0 .mobile-menu-link:nth-child(3) {
+		transition-delay: 0.3s;
+	}
+
+	#mobile-menu.translate-y-0 .mobile-menu-link:nth-child(4) {
+		transition-delay: 0.4s;
+	}
+
+	#mobile-menu.translate-y-0 .mobile-menu-link:nth-child(5) {
+		transition-delay: 0.5s;
+	}
+</style>
 

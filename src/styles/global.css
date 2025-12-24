@@ -9,12 +9,14 @@
 	*::before,
 	*::after {
 		box-sizing: border-box;
+		margin: 0;
 	}
 
 	html {
 		font-family: var(--font-sans);
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+		scroll-behavior: smooth;
 	}
 
 	body {
@@ -23,10 +25,81 @@
 		line-height: 1.6;
 		color: #1a1a1a;
 		background-color: #ffffff;
+		touch-action: manipulation;
+		-webkit-tap-highlight-color: transparent;
 	}
 
 	/* Asegurar que font-sans de Tailwind use la fuente correcta */
 	.font-sans {
 		font-family: var(--font-sans);
+	}
+}
+
+/* Clases globales reutilizables para márgenes */
+@layer utilities {
+	.mb-1 {
+		margin-bottom: 0.25rem !important;
+	}
+
+	.mb-2 {
+		margin-bottom: 0.5rem !important;
+	}
+
+	.mb-3 {
+		margin-bottom: 0.75rem !important;
+	}
+
+	.mb-4 {
+		margin-bottom: 1rem !important;
+	}
+
+	.mb-5 {
+		margin-bottom: 1.25rem !important;
+	}
+
+	.mb-6 {
+		margin-bottom: 1.5rem !important;
+	}
+
+	.mb-8 {
+		margin-bottom: 2rem !important;
+	}
+
+	.mb-10 {
+		margin-bottom: 2.5rem !important;
+	}
+
+	.mb-12 {
+		margin-bottom: 3rem !important;
+	}
+
+	.mb-16 {
+		margin-bottom: 4rem !important;
+	}
+
+	@media (min-width: 768px) {
+		.md\:mb-4 {
+			margin-bottom: 1rem !important;
+		}
+
+		.md\:mb-5 {
+			margin-bottom: 1.25rem !important;
+		}
+
+		.md\:mb-6 {
+			margin-bottom: 1.5rem !important;
+		}
+
+		.md\:mb-8 {
+			margin-bottom: 2rem !important;
+		}
+
+		.md\:mb-12 {
+			margin-bottom: 3rem !important;
+		}
+
+		.md\:mb-16 {
+			margin-bottom: 4rem !important;
+		}
 	}
 }
