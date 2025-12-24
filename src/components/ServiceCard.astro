@@ -76,9 +76,9 @@ const hasIcon = !!iconSrc;
     </div>
   ) : (
     <!-- Collapsed Card with Icon -->
-    <div class="p-6 md:p-8 flex flex-col gap-4 h-full">
+    <div class="p-6 md:p-8 flex flex-col gap-2 h-full">
       {hasIcon && (
-        <div class="mb-4 md:mb-8">
+        <div class="mb-1 md:mb-2">
           <Image
             src={iconSrc}
             alt=""
@@ -90,17 +90,17 @@ const hasIcon = !!iconSrc;
         </div>
       )}
       
-      <h3 class="text-xl md:text-2xl lg:text-3xl font-bold uppercase text-gray-900 mb-3 md:mb-4 leading-tight font-sans">
+      <h3 class="text-xl md:text-2xl lg:text-3xl font-bold uppercase text-gray-900 leading-tight font-sans">
         {title}
       </h3>
       
-      <p class="text-sm md:text-base text-gray-700 leading-relaxed font-sans mb-6 md:mb-8 flex-1">
+      <p class="text-sm md:text-base text-gray-700 leading-relaxed font-sans flex-1">
         {description}
       </p>
       
       <a
         href={linkHref}
-        class="inline-flex items-center gap-2 text-[#DC2626] hover:text-[#B91C1C] font-semibold text-sm md:text-base transition-colors font-sans group"
+        class="inline-flex items-center gap-2 text-[#DC2626] hover:text-[#B91C1C] font-semibold text-sm md:text-base transition-colors font-sans group mt-auto"
         aria-label={`${linkText} for ${title}`}
       >
         {linkText}
@@ -142,25 +142,31 @@ const hasIcon = !!iconSrc;
     }
   }
 
-  /* Asegurar que los márgenes funcionen correctamente */
-  .service-card p {
+  /* Asegurar que los márgenes funcionen correctamente - solo para cards expanded */
+  .service-card-expanded p {
     margin-bottom: 1.5rem !important;
   }
 
   @media (min-width: 768px) {
-    .service-card p {
+    .service-card-expanded p {
       margin-bottom: 2rem !important;
     }
   }
 
-  .service-card h3 {
+  .service-card-expanded h3 {
     margin-bottom: 0.75rem !important;
   }
 
   @media (min-width: 768px) {
-    .service-card h3 {
+    .service-card-expanded h3 {
       margin-bottom: 1rem !important;
     }
+  }
+
+  /* Cards collapsed usan gap para espaciado, sin márgenes adicionales */
+  .service-card-collapsed p,
+  .service-card-collapsed h3 {
+    margin-bottom: 0 !important;
   }
 </style>
 
