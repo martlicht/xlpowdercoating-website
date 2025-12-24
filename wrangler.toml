@@ -1,0 +1,6 @@
+# Cloudflare Pages configuration
+# Este archivo es opcional pero útil para configuración local
+
+[env.production]
+name = "xl-website"
+

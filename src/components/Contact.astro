@@ -365,18 +365,76 @@ import backgroundImage from "../assets/images/background5.webp";
         message: formData.get('message') as string
       };
       
-      // Send to API endpoint
-      const response = await fetch('/api/contact', {
+      // Obtener variables de entorno (públicas para cliente)
+      const API_URL = import.meta.env.PUBLIC_API_URL || '';
+      const API_KEY = import.meta.env.PUBLIC_API_KEY || '';
+      
+      if (!API_URL || !API_KEY) {
+        throw new Error('API configuration missing');
+      }
+      
+      // Mapear los valores del servicio
+      const serviceMap: Record<string, string> = {
+        'powder-coating': 'Powder coating',
+        'touch-ups': 'Touch ups & Recoating',
+        'color-matching': 'Custom Color Matching',
+        'sandblasting': 'Sandblasting',
+        'other': 'Other'
+      };
+      
+      // Extraer código de país del teléfono (por defecto US si no se detecta)
+      const phoneNumber = data.phone?.replace(/\D/g, '') || '';
+      let phoneCountryCode = 'US'; // Por defecto US
+      
+      // Detectar código de país básico
+      if (phoneNumber.startsWith('1') && phoneNumber.length === 11) {
+        phoneCountryCode = 'US';
+      } else if (phoneNumber.startsWith('809') || phoneNumber.startsWith('829') || phoneNumber.startsWith('849')) {
+        phoneCountryCode = 'DO';
+      }
+      
+      // Asegurar que la URL tenga protocolo
+      let apiUrl = API_URL;
+      if (!apiUrl.startsWith('http://') && !apiUrl.startsWith('https://')) {
+        apiUrl = `https://${apiUrl}`;
+      }
+      
+      // Remover trailing slash si existe
+      apiUrl = apiUrl.replace(/\/$/, '');
+      
+      // Construir el payload
+      const payload = {
+        first_name: data.firstName || '',
+        last_name: data.lastName || '',
+        email: data.email || '',
+        phone_number: phoneNumber,
+        phone_country_code: phoneCountryCode,
+        message: data.message || '',
+        source: 'XL',
+        intrested: serviceMap[data.service] || data.service || '',
+        project: data.project || ''
+      };
+      
+      // Send to external API
+      const response = await fetch(`${apiUrl}/contacts/leads/create/`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'HTTP_APIkey': API_KEY
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(payload)
       });
       
-      const result = await response.json();
+      let result;
+      const responseContentType = response.headers.get('content-type');
       
-      if (response.ok && result.success) {
+      if (responseContentType && responseContentType.includes('application/json')) {
+        result = await response.json();
+      } else {
+        result = await response.text();
+      }
+      
+      if (response.ok) {
         // Success
         formMessage.classList.remove('hidden');
         formMessage.classList.add('bg-green-500/20', 'border', 'border-green-500', 'text-green-400');
@@ -386,7 +444,12 @@ import backgroundImage from "../assets/images/background5.webp";
         // Error
         formMessage.classList.remove('hidden');
         formMessage.classList.add('bg-red-500/20', 'border', 'border-red-500', 'text-red-400');
-        formMessage.textContent = result.error || 'Failed to send message. Please try again.';
+        const errorMessage = typeof result === 'object' && result.error 
+          ? result.error 
+          : typeof result === 'string' 
+            ? result 
+            : 'Failed to send message. Please try again.';
+        formMessage.textContent = errorMessage;
       }
     } catch (error) {
       // Network or other error
