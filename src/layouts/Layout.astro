@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import AOSInit from "../components/AOSInit.astro";
+import Analytics from '@vercel/analytics/astro'
 
 interface Props {
   title?: string;
@@ -35,6 +36,7 @@ const { title = "XL Website", description = "Landing page built with Astro" } =
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600;1,700;1,900&display=swap"
       rel="stylesheet"
     />
+    <Analytics />
     <title>{title}</title>
   </head>
   <body>
